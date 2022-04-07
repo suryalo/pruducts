@@ -1,4 +1,19 @@
+# 讀取檔案
 products = []
+with open('products.csv', 'r', encoding = 'utf-8') as f:
+	for line in f:
+		if '商品,價格' in line:
+			continue    # 繼續跳到下一迴圈
+		name, price = line.strip().split(',') 
+		products.append([name, price])
+
+			#先用strip()把換行符號去掉
+			#再用‘,'當作切割的基準
+
+print(products)
+
+
+
 while True:
 	name = input('起輸入商品名稱：')
 	if name == 'q':
@@ -13,7 +28,7 @@ for p in products:
 
 
 # 寫入檔案
-with open('procucts.csv', 'w', encoding = 'utf-8') as f:
+with open('products.csv', 'w', encoding = 'utf-8') as f:
 	f.write('商品,價格\n')  
 		# 在 for loop 開始前先寫入標題欄
 		# 但在寫入標題時會有中文亂碼問題，使用 encode = 'utf-8' 這個編碼（encoding)來解決
